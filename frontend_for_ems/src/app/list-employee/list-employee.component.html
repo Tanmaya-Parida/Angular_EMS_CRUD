@@ -1,0 +1,43 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 ml-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchEmployees()">Search</button>
+        </form>
+    </div>
+</nav>
+
+<!-- Employee List Container -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Employee List</h2>
+    <table class="table table-hover table-bordered shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Emp_Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of filteredEmployees" class="align-middle">
+                <td>{{employee.id}}</td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.salary | currency:'INR':'symbol':'1.2-2'}}</td>
+                <td>
+                    <button class="btn btn-info btn-sm me-2" (click)="updateEmployee(employee.id)">Update</button>
+                    <button class="btn btn-danger btn-sm me-2" (click)="deleteEmployee(employee.id)">Delete</button>
+                    <button class="btn btn-secondary btn-sm" (click)="viewEmployee(employee.id)">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
